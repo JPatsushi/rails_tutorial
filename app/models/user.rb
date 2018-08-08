@@ -110,6 +110,9 @@ class User < ApplicationRecord
   
   # ユーザーのステータスフィードを返す。 サブセレクト
   def feed
+    
+    # replying_ids = "SELECT user_id FROM microposts  OR user_id IN (#{replying_ids}
+    #                 WHERE in-reply-to = :user_id"
     following_ids = "SELECT followed_id FROM relationships
                      WHERE follower_id = :user_id"
     Micropost.where("user_id IN (#{following_ids})
