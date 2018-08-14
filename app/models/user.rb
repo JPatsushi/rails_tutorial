@@ -111,13 +111,23 @@ class User < ApplicationRecord
   # ユーザーのステータスフィードを返す。 サブセレクト
   def feed
     
-    # replying_ids = "SELECT user_id FROM microposts  OR user_id IN (#{replying_ids}
-    #                 WHERE in-reply-to = :user_id"
-    following_ids = "SELECT followed_id FROM relationships
-                     WHERE follower_id = :user_id"
-    Micropost.where("user_id IN (#{following_ids})
-                     OR user_id = :user_id", user_id: id)
+    
+    # following_ids = "SELECT followed_id FROM relationships
+    #                 WHERE follower_id = :user_id"
+    # Micropost.where("user_id IN (#{following_ids})
+    #                  OR user_id = :user_id", user_id: id)
+                     
+     Micropost.where("user_id IN (?) OR user_id = ? OR in_reply_to = ? ", following_ids, id, "@#{id}\-#{name.sub(/\s/,'-')}")                
+    # Micropost.where("user_id IN (?) OR user_id = ?", following_ids, id) 
+                     
   end
+  
+  # def feed(user)
+  #   following_ids = "SELECT followed_id FROM relationships
+  #                   WHERE follower_id = :user_id"
+  #   Micropost.including_replies(user).where("user_id IN (#{following_ids})
+  #             OR user_id = :user_id", user_id: id) 
+  # end
   
   # ユーザーをフォローする
   def follow(other_user)
