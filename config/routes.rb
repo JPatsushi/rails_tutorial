@@ -11,6 +11,12 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   
+  resources :items do
+    member do
+      patch :complete
+    end
+  end
+  
   resources :users do
     member do
       get :following, :followers
