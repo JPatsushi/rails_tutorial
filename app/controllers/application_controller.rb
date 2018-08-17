@@ -12,4 +12,14 @@ class ApplicationController < ActionController::Base
         redirect_to login_url
       end
     end
+    
+    def ensure_correct_user
+      item = Item.find(params[:id])
+      if current_user.id != item.user_id
+        flash[:danger] = "No permission to access."
+        redirect_to items_path
+      end
+      
+    end
+    
 end

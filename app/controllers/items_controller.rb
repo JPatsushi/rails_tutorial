@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :ensure_correct_user, only: [:edit, :show, :update, :destroy]
+  before_action :logged_in_user, only: [:index]
   before_action :find_item, only: [:show, :edit, :update, :destroy]
   
   def index
