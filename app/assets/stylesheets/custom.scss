@@ -321,3 +321,21 @@ span.picture {
 .item:last-child {
 	border-bottom: 0px solid #e7e7e7;
 }
+
+/* for search  */
+
+.search_form {
+   overflow: auto;
+   margin: 10px;
+   float: right;
+   .input-group {
+     width: 300px;
+    .form-control {
+      width: 350px;
+    }
+    .btn {
+      width: 50px;
+    }
+   }
+}
+
