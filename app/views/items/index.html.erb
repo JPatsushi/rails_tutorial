@@ -11,7 +11,7 @@
         <div class="col-md-4">
           <h3 style="opacity:0.5;" class="item-title"><strike><%= link_to item.title, item %></strike></h3>
           <p style="opacity:0.5;" class="item-sub-title item-desc"><%= item.description %></p>
-          <p style="opacity:0.5;" class="time-ago item-sub-title">Completed <%= time_ago_in_words(item.completed_at)%> ago</p>
+          <p style="opacity:0.5;" class="time-ago item-sub-title"><%= time_ago_in_words(item.completed_at)%>前に作成した</p>
         </div>
         <div class="col-md-1">
           <p><%= link_to complete_item_path(item), method: :patch do %></p>
@@ -19,7 +19,7 @@
           <% end %>
         </div>
         <div class="col-md-1">
-          <p><%= link_to item, method: :delete, data:{ confirm: "Are you sure?" } do %></p>
+          <p><%= link_to item, method: :delete, data: { confirm: "本当によろしいでしょうか？" } do %></p>
              <i class="fa fa-lf fa-trash"></i>
           <% end %>
         </div>
@@ -34,7 +34,7 @@
         <div class="col-md-4">
           <h3 class="item-title"><%= link_to item.title, item %></h3>
           <p class="item-sub-title item-desc"><%= item.description %></p>
-          <p class="time-ago item-sub-title">Created <%= time_ago_in_words(item.created_at)%> ago</p>
+          <p class="time-ago item-sub-title"><%= time_ago_in_words(item.created_at)%>前に作成した</p>
         </div>
         <div class="col-md-1">
           <p><%= link_to complete_item_path(item), method: :patch do %></p>
@@ -42,7 +42,7 @@
           <% end %>
         </div>
         <div class="col-md-1">  
-          <p><%= link_to item, method: :delete, data:{ confirm: "Are you sure?" } do %></p>
+          <p><%= link_to item, method: :delete, data:{ confirm: "本当によろしいでしょうか？" } do %></p>
              <i class="fa fa-lf fa-trash"></i>
           <% end %>
         </div>

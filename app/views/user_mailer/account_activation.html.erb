@@ -1,10 +1,10 @@
-<h1>Sample App</h1>
+<h1>成功の物語</h1>
 
-<p>Hi <%= @user.name %>,</p>
+<p>初めまして <%= @user.name %>さん,</p>
 
 <p>
-Welcome to the Sample App! Click on the link below to activate your account:
+成功の物語へようこそ！ 以下のリンクをクリックし、アカウントを有効にしましょう！
 </p>
 
-<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
+<%= link_to "アクティベート", edit_account_activation_url(@user.activation_token,
                                                     email: @user.email) %>

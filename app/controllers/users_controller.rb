@@ -6,20 +6,20 @@ class UsersController < ApplicationController
   def index
     if params[:q]
       @q = User.ransack(search_params, activated: true)
-      @users = @q.result(distinct: true).paginate(page: params[:page])
-      @title = "Search result"
+      @users = @q.result(distinct: true).page(params[:page])
+      @title = "検索結果"
     else  
       @q = User.ransack(activated_true: true)
       # @users = User.paginate(page: params[:page])
       # @users = User.where(activated: true).paginate(page: params[:page])
-      @title = "All Users"
+      @title = "ユーザー"
     end
-      @users = @q.result.paginate(page: params[:page])
+      @users = @q.result.page(params[:page])
   end
   
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
+    @microposts = @user.microposts.page(params[:page])
     redirect_to root_url and return unless @user.activated? #まだよくわからない
     
   end
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
       # log_in @user
       # flash[:success] = "Welcome to the Sample App!"
       # redirect_to @user #redirect_to user_url(@user)と同じ
-      flash[:info] = "Please check your email to activate your account."
+      flash[:info] = "メールを確認して、アカウントをアクティベートしてください"
       redirect_to root_url
     else
       render 'new'
@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
+      flash[:success] = "プロフィールを更新しました"
       redirect_to @user
     else
       render 'edit'
@@ -58,21 +58,21 @@ class UsersController < ApplicationController
   
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "User deleted"
+    flash[:success] = "ユーザーを削除しました"
     redirect_to users_url
   end
   
   def following
     @title = "Following"
     @user  = User.find(params[:id])
-    @users = @user.following.paginate(page: params[:page])
+    @users = @user.following.page(params[:page])
     render 'show_follow'
   end
 
   def followers
     @title = "Followers"
     @user  = User.find(params[:id])
-    @users = @user.followers.paginate(page: params[:page])
+    @users = @user.followers.page(params[:page])
     render 'show_follow'
   end
   

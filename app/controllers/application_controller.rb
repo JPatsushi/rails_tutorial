@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     def logged_in_user
       unless logged_in?
         store_location
-        flash[:danger] = "Please log in."
+        flash[:danger] = "ログインしてください"
         redirect_to login_url
       end
     end
@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     def ensure_correct_user
       item = Item.find(params[:id])
       if current_user.id != item.user_id
-        flash[:danger] = "No permission to access."
+        flash[:danger] = "アクセス権限がありません"
         redirect_to items_path
       end
       

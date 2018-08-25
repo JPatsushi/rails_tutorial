@@ -1,5 +1,5 @@
-Hi <%= @user.name %>,
+初めまして <%= @user.name %>さん,
 
-Welcome to the Sample App! Click on the link below to activate your account:
+成功の物語へようこそ！ 以下のリンクをクリックし、アカウントを有効にしましょう！
 
 <%= edit_account_activation_url(@user.activation_token, email: @user.email) %>

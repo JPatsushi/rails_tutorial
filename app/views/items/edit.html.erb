@@ -1,5 +1,5 @@
 <% provide(:title, 'Edit checklist') %>
-<h1>Edit Item</h1>
+<h1>アイテム編集</h1>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@item, url: item_path) do |f| %>
@@ -9,7 +9,7 @@
       <%= f.label :description %>
       <%= f.text_field :description, class: 'form-control' %>
 
-      <%= f.submit "Update Item", class: "btn btn-primary btn-lg" %>
+      <%= f.submit "アイテム変更", class: "btn btn-primary btn-lg" %>
     <% end %>
   </div>
 </div>
