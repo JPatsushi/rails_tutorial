@@ -37,7 +37,7 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
    test "micropost interface" do
     log_in_as(@user)
     get root_path
-    assert_select 'div.pagination'
+    # assert_select 'div.pagination'
     assert_select 'input[type="file"]'   
     # 無効な送信
     # post microposts_path, micropost: { content: "" } 演習にparamsが無かった
@@ -54,27 +54,27 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_match content, response.body
     # 投稿を削除する
-    assert_select 'a', text: 'delete'
+    assert_select 'a', text: '削除する'
     first_micropost = @user.microposts.paginate(page: 1).first
     assert_difference 'Micropost.count', -1 do
       delete micropost_path(first_micropost)
     end
     # 違うユーザーのプロフィールにアクセス (削除リンクがないことを確認)
     get user_path(users(:archer))
-    assert_select 'a', text: 'delete', count: 0
+    assert_select 'a', text: '削除する', count: 0
   end
   
   test "micropost sidebar count" do
     log_in_as(@user)
     get root_path
-    assert_match "#{@user.microposts.count} microposts", response.body
+    assert_match "#{@user.microposts.count} 投稿", response.body
     # まだマイクロポストを投稿していないユーザー
     other_user = users(:malory)
     log_in_as(other_user)
     get root_path
-    assert_match "0 microposts", response.body
+    assert_match "0 投稿", response.body
     other_user.microposts.create!(content: "A micropost")
     get root_path
-    assert_match "1 micropost", response.body
+    assert_match "1 投稿", response.body
   end
 end

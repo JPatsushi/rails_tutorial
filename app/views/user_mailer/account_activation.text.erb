@@ -1,5 +1,5 @@
-初めまして <%= @user.name %>さん,
+Hi <%= @user.name %>,
 
-成功の物語へようこそ！ 以下のリンクをクリックし、アカウントを有効にしましょう！
+Welcome to the Seikou App! Click on the link below to activate your account:
 
 <%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
