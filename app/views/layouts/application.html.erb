@@ -12,6 +12,9 @@
         <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
       <% end %>
       <%= yield %>
+        <div class ="step">
+          <%= image_tag "step.jpg" %>
+        </div>
     <%= render 'layouts/footer' %>
     <%= debug(params) if Rails.env.development? %>
     </div>
